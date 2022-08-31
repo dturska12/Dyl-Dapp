@@ -71,14 +71,7 @@ const Home: NextPage = () => {
   }
 
   // Function to mint/claim an NFT
-  const call = async () => {
-    try {
-      const data = await mint1([ _to, _id, _amount ]);
-      console.info("contract call successs", data);
-    } catch (err) {
-      console.error("contract call failure", err);
-    }
-  }
+  
   const mint = async () => {
     if (isOnWrongNetwork) {
       switchNetwork && switchNetwork(ChainId.Goerli);
