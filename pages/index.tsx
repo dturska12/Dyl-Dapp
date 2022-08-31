@@ -29,6 +29,9 @@ const Home: NextPage = () => {
   const isOnWrongNetwork = useNetworkMismatch();
   const claimNFT = useClaimNFT(nftDrop);
   const [, switchNetwork] = useNetwork();
+  const url = "https://thirdweb.com/";
+  const url2 = "https://kroniclabz.com/";
+
 
   // The amount the user claims
   const [quantity, setQuantity] = useState(1); // default to 1
@@ -68,9 +71,17 @@ const Home: NextPage = () => {
   }
 
   // Function to mint/claim an NFT
+  const call = async () => {
+    try {
+      const data = await mint1([ _to, _id, _amount ]);
+      console.info("contract call successs", data);
+    } catch (err) {
+      console.error("contract call failure", err);
+    }
+  }
   const mint = async () => {
     if (isOnWrongNetwork) {
-      switchNetwork && switchNetwork(ChainId.Mumbai);
+      switchNetwork && switchNetwork(ChainId.Goerli);
       return;
     }
 
@@ -221,11 +232,19 @@ const Home: NextPage = () => {
         alt="thirdweb Logo"
         width={135}
         className={styles.buttonGapTop}
-      /><img 
+        role="button"
+        style={{ cursor: "pointer" }}
+        onClick={() => window.open(url, "_blank")}
+      />
+      <img 
         src="/kroniclabz-logo.png"
         alt="Kroniclabz Logo"
         width={70}
-        className={styles.buttonGapTop} /> 
+        className={styles.buttonGapTop}  
+        role="button"
+        style={{ cursor: "pointer" }}
+        onClick={() => window.open(url2, "_blank")}
+        />
     </div>
   );
 };
