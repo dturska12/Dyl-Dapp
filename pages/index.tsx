@@ -17,8 +17,9 @@ import type { NextPage } from 'next';
 import { useState } from 'react';
 import styles from '../styles/Theme.module.css';
 
+
 // Put Your NFT Drop Contract address from the dashboard here
-const useContract = '0x7272641725a5e86476D9C30E3E7eB868B3291f7F';
+const useContract = '0x6c6BF7dCF2e9426fd4Db80bD8C5fC9B69837Cad1';
 
 const Home: NextPage = () => {
   const nftDrop = useNFTDrop(useContract);
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
   const [, switchNetwork] = useNetwork();
   const url = "https://thirdweb.com/";
   const url2 = "https://kroniclabz.com/";
+  const url3 = "https://www.itslit.org/nft";
 
 
   // The amount the user claims
@@ -94,14 +96,22 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.mintInfoContainer}>
-        <div className={styles.infoSide}>
-          {/* Title of your NFT Collection */}
-          <h1>{contractMetadata?.name}</h1>
-          {/* Description of your NFT Collection */}
-          <p className={styles.description}>{contractMetadata?.description}</p>
+      <div className={styles.logo}>
+        <img 
+          src="/Dyl-logo.svg"
+          alt="Dyl Logo"
+          width={350}
+          role="button"
+          style={{ cursor: "pointer" }}
+          onClick={() => window.open(url3, "https://itslit.org/nft")}
+        />
+        <hr className={styles.divider} />
         </div>
-
+      <div className={styles.title}>
+        <h1>MINT DYL NFTs</h1>
+      </div>
+         <hr className={styles.divider} />
+      <div className={styles.mintInfoContainer}>
         <div className={styles.imageSide}>
           {/* Image Preview of NFTs */}
           <img
@@ -131,6 +141,7 @@ const Home: NextPage = () => {
                 <p>Loading...</p>
               )}
             </div>
+            
           </div>
 
           {/* Show claim button or connect wallet button */}
@@ -197,25 +208,59 @@ const Home: NextPage = () => {
             )
           ) : (
             <div className={styles.buttons}>
-              <button
-                className={styles.mainButton}
-                onClick={connectWithMetamask}
+              <div
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  padding: '5 5 5 5',
+
+                }}
               >
-                Connect MetaMask
-              </button>
-              <button
-                className={styles.mainButton}
-                onClick={connectWithWalletConnect}
-              >
-                Connect with Wallet Connect
-              </button>
-              <button
-                className={styles.mainButton}
-                onClick={connectWithCoinbaseWallet}
-              >
-                Connect with Coinbase Wallet
-              </button>
+                <img
+                  src="/metamask.svg"
+                  alt="Metamask"
+                  width={50}
+                  height={50}
+                  role="button"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => connectWithMetamask()}
+                />
+                <div
+                  style={{
+                    position: 'relative',
+                    display: 'flex',
+  
+                  }}
+                >
+                  <img
+                    src="/coinbase.svg"
+                    alt="Coinbase"
+                    width={50}
+                    height={50}
+                    role="button"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => connectWithCoinbaseWallet()}
+                  />
+                  <div
+                    style={{
+                      position: 'relative',
+                      display: 'flex',
+    
+                    }}
+                  >
+                    <img
+                      src="/walletconnect.svg"
+                      alt="WalletConnect"
+                      width={50}
+                      height={50}
+                      role="button"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => connectWithWalletConnect()}
+                    />
             </div>
+          </div>
+        </div>
+      </div>
           )}
         </div>
       </div>
@@ -240,6 +285,6 @@ const Home: NextPage = () => {
         />
     </div>
   );
-};
+}
 
 export default Home;
