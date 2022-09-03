@@ -257,11 +257,17 @@ const Home: NextPage = () => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => connectWithWalletConnect()}
                     />
-            </div>
+             </div>
           </div>
         </div>
       </div>
           )}
+        </div>
+        <div className={styles.infoSide}>
+          {/* Title of your NFT Collection */}
+          <h1>{contractMetadata?.name}</h1>
+          {/* Description of your NFT Collection */}
+          <p className={styles.description}>{contractMetadata?.description}</p>
         </div>
       </div>
       {/* Powered by thirdweb */}{'Powered by'}
