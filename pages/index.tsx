@@ -270,14 +270,18 @@ const Home: NextPage = () => {
           <div className={styles.infoSide2}>
             {/* Title of your NFT Collection */}
             <h1>{contractMetadata?.name}</h1>
-            <div className={styles.infoSide2}>
+            <div className={styles.infoSide3}>
             {/* Description of your NFT Collection */}
             <p className={styles.description}>{contractMetadata?.description}</p>
             </div >
           </div>
         </div>
       </div>
+      <p></p>
+      <hr className={styles.divider} />
+      <p></p>
       {/* Powered by thirdweb */}{'Powered by'}
+      <p></p>
       <img
         src="/logo.png"
         alt="thirdweb Logo"
