@@ -111,6 +111,7 @@ const Home: NextPage = () => {
         <h1>MINT DYL NFTs</h1>
       </div>
          <hr className={styles.divider} />
+         <p></p>
       <div className={styles.mintInfoContainer}>
         <div className={styles.imageSide}>
           {/* Image Preview of NFTs */}
@@ -263,11 +264,17 @@ const Home: NextPage = () => {
       </div>
           )}
         </div>
-        <div className={styles.infoSide}>
-          {/* Title of your NFT Collection */}
-          <h1>{contractMetadata?.name}</h1>
-          {/* Description of your NFT Collection */}
-          <p className={styles.description}>{contractMetadata?.description}</p>
+        <p></p>
+        <hr className={styles.divider} />
+        <div className={styles.container}>
+          <div className={styles.infoSide2}>
+            {/* Title of your NFT Collection */}
+            <h1>{contractMetadata?.name}</h1>
+            <div className={styles.infoSide2}>
+            {/* Description of your NFT Collection */}
+            <p className={styles.description}>{contractMetadata?.description}</p>
+            </div >
+          </div>
         </div>
       </div>
       {/* Powered by thirdweb */}{'Powered by'}
