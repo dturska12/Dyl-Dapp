@@ -18,7 +18,7 @@
 
 .mintInfoContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -32,6 +32,15 @@
   flex-direction: column;
   align-items: center;
   width: 45%;
+  height: 100%;
+}
+
+.infoSide2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: 75%;
   height: 100%;
 }
 
@@ -64,6 +73,12 @@
   align-items: center;
   gap: 12px;
   margin: 12px 0;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .mainButton {
