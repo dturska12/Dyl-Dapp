@@ -3,22 +3,22 @@
 /* Change the values in here to match your branding */
 :root {
   /* Background color of the page */
-  --background-color: #ff7b08;
+  --background-color: #1e1e1e;
 
   /* Color of the text/words */
-  --text-color: #fff;
+  --text-color: #ffffff;
 
   /* Main color of your brand */
-  --color-primary: #ff7b08;
+  --color-primary: #1e1e1e;
 
   /* Secondary color of your brand */
-  --color-secondary: #ff7b08;
+  --color-secondary: #697cfd;
 
   /* Which font you want to use */
   --font: "Inter", sans-serif;
 
   /* Color of the border around items */
-  --border-color: #fff;
+  --border-color: #333133;
 }
 
 /* --- Don't need to modify below here --- */

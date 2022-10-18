@@ -9,17 +9,16 @@ import {
   useClaimNFT,
   useWalletConnect,
   useCoinbaseWallet,
-} from '@thirdweb-dev/react';
-import { useNetworkMismatch } from '@thirdweb-dev/react';
-import { useAddress, useMetamask } from '@thirdweb-dev/react';
-import { formatUnits, parseUnits } from 'ethers/lib/utils';
-import type { NextPage } from 'next';
-import { useState } from 'react';
-import styles from '../styles/Theme.module.css';
-
+} from "@thirdweb-dev/react";
+import { useNetworkMismatch } from "@thirdweb-dev/react";
+import { useAddress, useMetamask } from "@thirdweb-dev/react";
+import { formatUnits, parseUnits } from "ethers/lib/utils";
+import type { NextPage } from "next";
+import { useState } from "react";
+import styles from "../styles/Theme.module.css";
 
 // Put Your NFT Drop Contract address from the dashboard here
-const useContract = '0x6c6BF7dCF2e9426fd4Db80bD8C5fC9B69837Cad1';
+const useContract = "0x56De806942521560964463acd5564005203E3AcE";
 
 const Home: NextPage = () => {
   const nftDrop = useNFTDrop(useContract);
@@ -32,16 +31,12 @@ const Home: NextPage = () => {
   const [, switchNetwork] = useNetwork();
   const url = "https://thirdweb.com/";
   const url2 = "https://kroniclabz.com/";
-  const url3 = "https://www.itslit.org/nft";
-
 
   // The amount the user claims
   const [quantity, setQuantity] = useState(1); // default to 1
 
   // Load contract metadata
-  const { data: contractMetadata } = useContractMetadata(
-    useContract,
-  );
+  const { data: contractMetadata } = useContractMetadata(useContract);
 
   // Load claimed supply and unclaimed supply
   const { data: unclaimedSupply } = useUnclaimedNFTSupply(nftDrop);
@@ -60,8 +55,8 @@ const Home: NextPage = () => {
 
   // Check price
   const price = parseUnits(
-    activeClaimCondition?.currencyMetadata.displayValue || '0',
-    activeClaimCondition?.currencyMetadata.decimals,
+    activeClaimCondition?.currencyMetadata.displayValue || "0",
+    activeClaimCondition?.currencyMetadata.decimals
   );
 
   // Multiply depending on quantity
@@ -73,10 +68,10 @@ const Home: NextPage = () => {
   }
 
   // Function to mint/claim an NFT
-  
+
   const mint = async () => {
     if (isOnWrongNetwork) {
-      switchNetwork && switchNetwork(ChainId.Goerli);
+      switchNetwork && switchNetwork(ChainId.Mainnet);
       return;
     }
 
@@ -84,34 +79,33 @@ const Home: NextPage = () => {
       { to: address as string, quantity },
       {
         onSuccess: () => {
-          alert(`Successfully minted NFT${quantity > 1 ? 's' : ''}!`);
+          alert(`Successfully minted NFT${quantity > 1 ? "s" : ""}!`);
         },
         onError: (err: any) => {
           console.error(err);
-          alert(err?.message || 'Something went wrong');
+          alert(err?.message || "Something went wrong");
         },
-      },
+      }
     );
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
-        <img 
-          src="/Dyl-logo.svg"
-          alt="Dyl Logo"
-          width={350}
+        <img
+          src="/logo-white.png"
+          alt="1st Class"
+          width={150}
           role="button"
           style={{ cursor: "pointer" }}
-          onClick={() => window.open(url3, "https://itslit.org/nft")}
         />
         <hr className={styles.divider} />
-        </div>
-      <div className={styles.title}>
-        <h1>MINT DYL NFTs</h1>
       </div>
-         <hr className={styles.divider} />
-         <p></p>
+      <div className={styles.title}>
+        <h1>MINT YOUR CREATOR PASS NOW</h1>
+      </div>
+      <hr className={styles.divider} />
+      <p></p>
       <div className={styles.mintInfoContainer}>
         <div className={styles.imageSide}>
           {/* Image Preview of NFTs */}
@@ -131,7 +125,7 @@ const Home: NextPage = () => {
                 <p>
                   {/* Claimed supply so far */}
                   <b>{claimedSupply?.toNumber()}</b>
-                  {' / '}
+                  {" / "}
                   {
                     // Add unclaimed and claimed supply to get the total supply
                     claimedSupply?.toNumber() + unclaimedSupply?.toNumber()
@@ -142,7 +136,6 @@ const Home: NextPage = () => {
                 <p>Loading...</p>
               )}
             </div>
-            
           </div>
 
           {/* Show claim button or connect wallet button */}
@@ -176,8 +169,7 @@ const Home: NextPage = () => {
                     disabled={
                       quantity >=
                       parseInt(
-                        activeClaimCondition?.quantityLimitPerTransaction ||
-                          '0',
+                        activeClaimCondition?.quantityLimitPerTransaction || "0"
                       )
                     }
                   >
@@ -191,18 +183,18 @@ const Home: NextPage = () => {
                   disabled={claimNFT.isLoading}
                 >
                   {claimNFT.isLoading
-                    ? 'Minting...'
-                    : `Mint${quantity > 1 ? ` ${quantity}` : ''}${
+                    ? "Minting..."
+                    : `Mint${quantity > 1 ? ` ${quantity}` : ""}${
                         activeClaimCondition?.price.eq(0)
-                          ? ' (Free)'
+                          ? " (Free)"
                           : activeClaimCondition?.currencyMetadata.displayValue
                           ? ` (${formatUnits(
                               priceToMint,
-                              activeClaimCondition.currencyMetadata.decimals,
+                              activeClaimCondition.currencyMetadata.decimals
                             )} ${
                               activeClaimCondition?.currencyMetadata.symbol
                             })`
-                          : ''
+                          : ""
                       }`}
                 </button>
               </>
@@ -211,10 +203,9 @@ const Home: NextPage = () => {
             <div className={styles.buttons}>
               <div
                 style={{
-                  position: 'relative',
-                  display: 'flex',
-                  padding: '5 5 5 5',
-
+                  position: "relative",
+                  display: "flex",
+                  padding: "5 5 5 5",
                 }}
               >
                 <img
@@ -223,14 +214,13 @@ const Home: NextPage = () => {
                   width={50}
                   height={50}
                   role="button"
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                   onClick={() => connectWithMetamask()}
                 />
                 <div
                   style={{
-                    position: 'relative',
-                    display: 'flex',
-  
+                    position: "relative",
+                    display: "flex",
                   }}
                 >
                   <img
@@ -239,14 +229,13 @@ const Home: NextPage = () => {
                     width={50}
                     height={50}
                     role="button"
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                     onClick={() => connectWithCoinbaseWallet()}
                   />
                   <div
                     style={{
-                      position: 'relative',
-                      display: 'flex',
-    
+                      position: "relative",
+                      display: "flex",
                     }}
                   >
                     <img
@@ -255,13 +244,13 @@ const Home: NextPage = () => {
                       width={50}
                       height={50}
                       role="button"
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: "pointer" }}
                       onClick={() => connectWithWalletConnect()}
                     />
-             </div>
-          </div>
-        </div>
-      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
         </div>
         <p></p>
@@ -271,16 +260,19 @@ const Home: NextPage = () => {
             {/* Title of your NFT Collection */}
             <h1>{contractMetadata?.name}</h1>
             <div className={styles.infoSide3}>
-            {/* Description of your NFT Collection */}
-            <p className={styles.description}>{contractMetadata?.description}</p>
-            </div >
+              {/* Description of your NFT Collection */}
+              <p className={styles.description}>
+                {contractMetadata?.description}
+              </p>
+            </div>
           </div>
         </div>
       </div>
       <p></p>
       <hr className={styles.divider} />
       <p></p>
-      {/* Powered by thirdweb */}{'Powered by'}
+      {/* Powered by thirdweb */}
+      {"Powered by"}
       <p></p>
       <img
         src="/logo.png"
@@ -291,17 +283,17 @@ const Home: NextPage = () => {
         style={{ cursor: "pointer" }}
         onClick={() => window.open(url, "_blank")}
       />
-      <img 
+      <img
         src="/kroniclabz-logo.png"
         alt="Kroniclabz Logo"
         width={70}
-        className={styles.buttonGapTop}  
+        className={styles.buttonGapTop}
         role="button"
         style={{ cursor: "pointer" }}
         onClick={() => window.open(url2, "_blank")}
-        />
+      />
     </div>
   );
-}
+};
 
 export default Home;
