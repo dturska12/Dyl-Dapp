@@ -18,7 +18,7 @@ import { useState } from "react";
 import styles from "../styles/Theme.module.css";
 
 // Put Your NFT Drop Contract address from the dashboard here
-const useContract = "0x56De806942521560964463acd5564005203E3AcE";
+const useContract = "0x934e7A415bdA6454569DF6Fd9C3177dADe2da545";
 
 const Home: NextPage = () => {
   const nftDrop = useNFTDrop(useContract);
@@ -71,7 +71,7 @@ const Home: NextPage = () => {
 
   const mint = async () => {
     if (isOnWrongNetwork) {
-      switchNetwork && switchNetwork(ChainId.Mainnet);
+      switchNetwork && switchNetwork(ChainId.Goerli);
       return;
     }
 
@@ -111,7 +111,7 @@ const Home: NextPage = () => {
           {/* Image Preview of NFTs */}
           <img
             className={styles.image}
-            src={contractMetadata?.image}
+            src="/1st.png"
             alt={`${contractMetadata?.name} preview image`}
           />
 
